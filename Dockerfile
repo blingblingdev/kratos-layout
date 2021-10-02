@@ -22,4 +22,4 @@ EXPOSE 8000
 EXPOSE 9000
 #VOLUME /data/conf
 
-CMD ["./server", "-conf", "/data/conf"]
+CMD ["./github.com/ffy/kratos-layout", "-conf", "/data/conf"]
