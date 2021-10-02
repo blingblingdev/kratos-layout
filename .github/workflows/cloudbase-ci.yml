@@ -1,0 +1,41 @@
+name: CloudBase CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  TKE_IMAGE_URL: ccr.ccs.tencentyun.com/tcb-100000000000-xxxx/service-name
+  TKE_USERNAME: 100000000000
+  TKE_PASSWORD: password
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      
+    - name: Get version
+      id: get_version
+      run: echo ::set-output name=VERSION::$(date +%s)
+    
+    # Build
+    - name: Build Docker image
+      run: |        
+        docker build -t ${TKE_IMAGE_URL}:${{ steps.get_version.outputs.VERSION }} .
+
+    - name: Login TKE Registry
+      run: |
+        docker login -u ${TKE_USERNAME} -p '${TKE_PASSWORD}' ${TKE_IMAGE_URL}
+        #docker login -u ${{ secrets.TENCENT_CLOUD_ACCOUNT_ID }} -p '${{ secrets.TKE_REGISTRY_PASSWORD }}' ${TKE_IMAGE_URL}
+
+    # Push the Docker image to TKE Registry
+    - name: Publish
+      run: |
+        docker push ${TKE_IMAGE_URL}:${{ steps.get_version.outputs.VERSION }}

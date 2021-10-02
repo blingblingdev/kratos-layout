@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package manage.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "github.com/ffy/kratos-layout/api/manage/v1;v1";
+option java_multiple_files = true;
+option java_package = "dev.kratos.api.manage.v1";
+option java_outer_classname = "ManageProtoV1";
+
+service Manage {
+    rpc Ping (PingReq) returns (PingResp) {
+        option (google.api.http) = {
+            get: "/interface-manage/manage/v1/ping"
+        };
+    }
+}
+
+message PingReq {
+    string msg = 1;
+}
+
+message PingResp {
+    string res = 1;
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package manage.v1;
+
+import "errors/errors.proto";
+
+option go_package = "github.com/ffy/kratos-layout/api/manage/v1;v1";
+option java_multiple_files = true;
+option java_package = "manage.v1.errors";
+option objc_class_prefix = "APIManageErrors";
+
+enum ErrorReason {
+    option (errors.default_code) = 500;
+
+    NOT_FOUND = 0 [(errors.code) = 404];
+    BAD_REQUEST = 1 [(errors.code) = 400];
+}
