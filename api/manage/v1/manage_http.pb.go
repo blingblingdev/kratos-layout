@@ -23,7 +23,7 @@ type ManageHTTPServer interface {
 
 func RegisterManageHTTPServer(s *http.Server, srv ManageHTTPServer) {
 	r := s.Route("/")
-	r.GET("/manage/v1/ping", _Manage_Ping0_HTTP_Handler(srv))
+	r.GET("/interface-manage/manage/v1/ping", _Manage_Ping0_HTTP_Handler(srv))
 }
 
 func _Manage_Ping0_HTTP_Handler(srv ManageHTTPServer) func(ctx http.Context) error {
@@ -59,7 +59,7 @@ func NewManageHTTPClient(client *http.Client) ManageHTTPClient {
 
 func (c *ManageHTTPClientImpl) Ping(ctx context.Context, in *PingReq, opts ...http.CallOption) (*PingResp, error) {
 	var out PingResp
-	pattern := "/manage/v1/ping"
+	pattern := "/interface-manage/manage/v1/ping"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation("/manage.v1.Manage/Ping"))
 	opts = append(opts, http.PathTemplate(pattern))
