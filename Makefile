@@ -48,7 +48,7 @@ api:
 .PHONY: build
 # build
 build:
-	mkdir -p bin/ && go build -ldflags "-X main.Version=$(VERSION)" -o ./bin/ ./...
+	mkdir -p bin/ && go build -ldflags "-X main.Name=github.com/ffy/kratos-layout -X main.Version=$(VERSION)" -o ./bin/ ./...
 
 .PHONY: generate
 # generate
