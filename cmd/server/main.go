@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"github.com/go-kratos/kratos/v2/middleware/tracing"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/exporters/jaeger"
@@ -84,8 +85,8 @@ func main() {
 		"service.id", id,
 		"service.name", Name,
 		"service.version", Version,
-		"trace_id", log.TraceID(),
-		"span_id", log.SpanID(),
+		"trace_id", tracing.TraceID(),
+		"span_id", tracing.SpanID(),
 	)
 	c := config.New(
 		config.WithSource(

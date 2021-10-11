@@ -3,7 +3,7 @@ module github.com/ffy/kratos-layout
 go 1.15
 
 require (
-	github.com/go-kratos/kratos/v2 v2.0.5
+	github.com/go-kratos/kratos/v2 v2.0.6-0.20211011054607-9743ad8d3289
 	github.com/go-kratos/zookeeper v0.0.0-20210721021028-9e7498619b89
 	github.com/google/wire v0.5.0
 	github.com/kr/text v0.2.0 // indirect
